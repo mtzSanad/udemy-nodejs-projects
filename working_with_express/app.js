@@ -7,7 +7,8 @@ const app = express();
 
 //Creates middleware, it takes a function that will be excuted for every request
 // next is a function that will be excuted to allow calling another function
-app.use((req, res, next) => {
+// Path is part of thats why we added /add before / or else it will go through /
+app.use("/add", (req, res, next) => {
   //This will be logged and browser will spin coz no response
   console.log("In middle ware");
 
@@ -15,7 +16,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => {
+// By default if path is not speified it routes to /
+app.use("/", (req, res, next) => {
   console.log("Another middle ware");
 
   //This replaces res.write and res.header
